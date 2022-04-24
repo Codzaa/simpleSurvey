@@ -12,7 +12,7 @@ class AdminUser {
   String name;
   //-//
   @HiveField(2)
-  String lastName;
+  String password;
   //-//
   @HiveField(3)
   String companyName;
@@ -20,6 +20,6 @@ class AdminUser {
   AdminUser(
       {required this.id,
       required this.name,
-      required this.lastName,
+      required this.password,
       required this.companyName});
 }

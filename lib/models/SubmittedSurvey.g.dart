@@ -6,17 +6,17 @@ part of 'SubmittedSurvey.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SurveyModelAdapter extends TypeAdapter<SurveyModel> {
+class SubmittedSurveyAdapter extends TypeAdapter<SubmittedSurvey> {
   @override
   final int typeId = 3;
 
   @override
-  SurveyModel read(BinaryReader reader) {
+  SubmittedSurvey read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return SurveyModel(
+    return SubmittedSurvey(
       id: fields[0] as String,
       ownerId: fields[1] as String,
       topic: fields[2] as String,
@@ -25,7 +25,7 @@ class SurveyModelAdapter extends TypeAdapter<SurveyModel> {
   }
 
   @override
-  void write(BinaryWriter writer, SurveyModel obj) {
+  void write(BinaryWriter writer, SubmittedSurvey obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
@@ -44,7 +44,7 @@ class SurveyModelAdapter extends TypeAdapter<SurveyModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SurveyModelAdapter &&
+      other is SubmittedSurveyAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

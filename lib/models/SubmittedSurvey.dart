@@ -4,7 +4,7 @@ import 'package:survey/models/QuestionModel.dart';
 part 'SubmittedSurvey.g.dart';
 
 @HiveType(typeId: 3)
-class SurveyModel {
+class SubmittedSurvey {
   //-//
   @HiveField(0)
   String id;
@@ -18,7 +18,7 @@ class SurveyModel {
   @HiveField(3)
   List<QuestionModel> questions;
   //
-  SurveyModel({
+  SubmittedSurvey({
     required this.id,
     required this.ownerId,
     required this.topic,
