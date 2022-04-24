@@ -52,12 +52,12 @@ class _AdminDashboardUIState extends State<AdminDashboardUI> {
               label: 'My Surveys',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
+              icon: Icon(Icons.add_comment),
               label: 'Submitted Surveys',
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
+          selectedItemColor: Colors.blue,
           onTap: _onItemTapped,
         ));
   }

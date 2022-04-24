@@ -88,15 +88,6 @@ class _MySurveysUIState extends State<MySurveysUI> {
               child: const Icon(Icons.add),
             ),
           ),
-          Positioned(
-            bottom: 120,
-            right: 30,
-            child: FloatingActionButton(
-              heroTag: "delete",
-              onPressed: () {},
-              child: const Icon(Icons.remove),
-            ),
-          )
         ],
       ),
     );

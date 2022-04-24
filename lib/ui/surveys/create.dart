@@ -54,8 +54,9 @@ class _CreateSurveyUIState extends State<CreateSurveyUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text("New Survey"),
+        title: const Text("New Survey(5 Questions)"),
         actions: [
           TextButton(
               onPressed: () {

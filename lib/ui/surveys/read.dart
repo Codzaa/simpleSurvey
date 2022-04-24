@@ -53,12 +53,6 @@ class _OpenSurveyUIState extends State<OpenSurveyUI> {
       ),
       body: Column(
         children: [
-          Center(
-            child: TextField(
-              controller: surveyNameController,
-              decoration: const InputDecoration(labelText: 'Survey Name'),
-            ),
-          ),
           haveQs
               ? ListView.builder(
                   shrinkWrap: true,

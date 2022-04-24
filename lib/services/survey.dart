@@ -58,17 +58,23 @@ class SurveyService {
       mySurveys = oldS.cast<SurveyModel>();
     }
     //
+    bool exists = true;
+    //
     if (mySurveys.isNotEmpty) {
       for (var item in mySurveys) {
         if (item.topic != newSurvey.topic) {
           //
-          mySurveys.add(newSurvey);
-          //
-          await box.put(AuthService.globalUserObj.name, mySurveys);
+          exists = false;
         }
       }
     } else {
       //
+      mySurveys.add(newSurvey);
+      //
+      await box.put(AuthService.globalUserObj.name, mySurveys);
+    }
+
+    if (!exists) {
       mySurveys.add(newSurvey);
       //
       await box.put(AuthService.globalUserObj.name, mySurveys);
@@ -139,8 +145,9 @@ class SurveyService {
     await box.put(_survey.ownerId, newList);
   }
 
-  static List<SubmittedSurvey> getSubmittedSurvey() {
+  static List<SubmittedSurvey> getSubmittedSurvey(String searchValue) {
     List<SubmittedSurvey> results = [];
+    List<SubmittedSurvey> results2 = [];
     //
     var box = Hive.box(ServerC.SUBMITTED_BOX_ALL);
     //
@@ -149,11 +156,13 @@ class SurveyService {
     if (heros != null) {
       //
       results = heros.cast<SubmittedSurvey>();
+      for (var item in results) {
+        if (item.topic == searchValue) {
+          results2.add(item);
+        }
+      }
       //
     }
-    for (var item in results) {
-      print(item.id);
-    }
-    return results;
+    return results2;
   }
 }

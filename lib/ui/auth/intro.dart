@@ -37,33 +37,50 @@ class _IntroUIState extends State<IntroUI> {
 
   @override
   Widget build(BuildContext context) {
-    return boxesOpened
-        ? Column(
-            children: [
-              TextButton(
-                  onPressed: () {
-                    //
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (builder) => SignUpUI()));
-                    //
-                  },
-                  child: const Text("Sign Up")),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (builder) => LoginUI()));
-                  },
-                  child: const Text("Login")),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (builder) => ClientDashUI()));
-                  },
-                  child: const Text("Take Survey")),
-            ],
-          )
-        : Column();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text("OPEN SURVEY")),
+      ),
+      body: boxesOpened
+          ? GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      //
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (builder) => SignUpUI()));
+                      //
+                    },
+                    child: const Text("Sign Up")),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (builder) => LoginUI()));
+                    },
+                    child: const Text("Login")),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => ClientDashUI()));
+                    },
+                    child: const Text("Take Survey")),
+                TextButton(
+                    onPressed: () {
+                      /*
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => ClientDashUI()));
+                              */
+                    },
+                    child: const Text("About")),
+              ],
+            )
+          : Column(),
+    );
   }
 }

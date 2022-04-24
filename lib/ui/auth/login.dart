@@ -54,7 +54,7 @@ class _LoginUIState extends State<LoginUI> {
         title: const Text("Login"),
       ),
       body: Column(
-        children: [const Center(child: Text("Login")), buildForm()],
+        children: [buildForm()],
       ),
     );
   }
@@ -70,6 +70,7 @@ class _LoginUIState extends State<LoginUI> {
         ),
         Center(
           child: TextField(
+            obscureText: true,
             controller: passwordController,
             decoration: const InputDecoration(labelText: 'Password'),
           ),
@@ -82,8 +83,11 @@ class _LoginUIState extends State<LoginUI> {
               onPressed: () {
                 loginF();
               },
-              child: const Text("Login"),
-              style: TextButton.styleFrom(backgroundColor: Colors.amber),
+              child: const Text(
+                "Login",
+                style: TextStyle(color: Colors.white),
+              ),
+              style: TextButton.styleFrom(backgroundColor: Colors.blue),
             ))
       ],
     );

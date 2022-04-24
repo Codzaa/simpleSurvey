@@ -55,7 +55,7 @@ class _SignUpUIState extends State<SignUpUI> {
         title: const Text("Sign Up"),
       ),
       body: Column(
-        children: [const Center(child: Text("Sign Up")), buildForm()],
+        children: [buildForm()],
       ),
     );
   }
@@ -77,6 +77,7 @@ class _SignUpUIState extends State<SignUpUI> {
         ),
         Center(
           child: TextField(
+            obscureText: true,
             controller: passwordController,
             decoration: const InputDecoration(labelText: 'Password'),
           ),
@@ -89,8 +90,11 @@ class _SignUpUIState extends State<SignUpUI> {
               onPressed: () {
                 signUpRegister();
               },
-              child: const Text("Sign Up"),
-              style: TextButton.styleFrom(backgroundColor: Colors.amber),
+              child: const Text(
+                "Sign Up",
+                style: TextStyle(color: Colors.white),
+              ),
+              style: TextButton.styleFrom(backgroundColor: Colors.blue),
             ))
       ],
     );

@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:survey/models/SubmittedSurvey.dart';
 import 'package:survey/services/results.dart';
-import 'package:survey/services/survey.dart';
 
 class ResultsUI extends StatefulWidget {
   List<SubmittedSurvey> surveys;
@@ -13,14 +12,6 @@ class ResultsUI extends StatefulWidget {
 }
 
 class _ResultsUIState extends State<ResultsUI> {
-  /**
-   * Results
-   * No. Of Submissions
-   * No. Of Questions
-   * No. of People Above 50%(Support Survey)
-   * No. of People Below 50%(Against Survey)
-   */
-
   double supportV = 0;
   double againstV = 0;
 
@@ -33,7 +24,7 @@ class _ResultsUIState extends State<ResultsUI> {
 
   asyncFunctions() {
     //
-    supportV = ResultsService.calculateSupportSurvey(widget.surveys.first);
+    supportV = ResultsService.calculateSupportSurvey(widget.surveys);
     supportV = supportV * 100;
     againstV = 100 - supportV;
     setState(() {});
@@ -43,10 +34,12 @@ class _ResultsUIState extends State<ResultsUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Text("${widget.surveys.first.topic} Survey Results"),
+      ),
       body: Column(
         children: [
-          Center(child: Text(widget.surveys.first.topic)),
           Card(
             child: ListTile(
               title: const Text("Number of Submissions"),
@@ -55,25 +48,26 @@ class _ResultsUIState extends State<ResultsUI> {
           ),
           Card(
             child: ListTile(
-              title: const Text("Number of Questions"),
+              title: const Text("Total of Questions"),
               subtitle: Text(widget.surveys.first.questions.length.toString()),
             ),
           ),
           Card(
             child: ListTile(
-              title: const Text("No of People Supporting The Survey"),
+              title: const Text("No. of People Supporting The Survey"),
               subtitle: Text("${supportV.toString()} %"),
             ),
           ),
           Card(
             child: ListTile(
-              title: const Text("No of People Against The Survey"),
+              title: const Text("No. of People Against The Survey"),
               subtitle: Text("${againstV.toString()} %"),
             ),
           ),
           Expanded(
             child: PieChart(
               PieChartData(
+                centerSpaceRadius: 70,
                 sections: showingSections(),
                 // read about it in the PieChartData section
               ),
@@ -95,10 +89,10 @@ class _ResultsUIState extends State<ResultsUI> {
             value: supportV,
             title: "Support",
             radius: 60,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff)),
+                color: Color(0xffffffff)),
           );
         case 1:
           return PieChartSectionData(
@@ -106,10 +100,10 @@ class _ResultsUIState extends State<ResultsUI> {
             value: againstV,
             title: "Against",
             radius: 80,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff)),
+                color: Color(0xffffffff)),
           );
         default:
           throw Error();
